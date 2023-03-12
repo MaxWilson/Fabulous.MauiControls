@@ -33,15 +33,19 @@ module App =
 
         | UserWroteSomething text -> { model with EnteredText = text }, []
 
+    // create image only once to prevent flicker on update
+    let dotnetBotImage =
+        Image("dotnet_bot.png")
+            .semantics(description = "Cute dotnet bot waving hi to you!")
+            .height(200.)
+            .centerHorizontal()
+
     let view model =
         Application(
             ContentPage(
                 ScrollView(
                     (VStack(spacing = 25.) {
-                        Image("dotnet_bot.png")
-                            .semantics(description = "Cute dotnet bot waving hi to you!")
-                            .height(200.)
-                            .centerHorizontal()
+                        dotnetBotImage
 
                         Label("Hello, World!")
                             .semantics(SemanticHeadingLevel.Level1)
